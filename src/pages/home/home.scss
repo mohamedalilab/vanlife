@@ -1,0 +1,70 @@
+@use "../../styles/helpers/variables" as *;
+@use "../../styles/helpers/mixins" as *;
+@use "../../styles/helpers/breakpoints" as *;
+/*
+  Home Page Styles:
+  [1] home
+  [2] responsive
+*/
+/* ----- start: [1] home ----- */
+.home-page {
+  display: flex;
+  align-items: center;
+  background-image: url("./images/home.png");
+  background-size: cover;
+  &::before {
+    @include ele-overlay(#0000008c);
+  }
+  .container {
+    @include flex(column, center, center, 20px);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    h2 {
+      color: $light-color;
+      font-size: 40px;
+    }
+    p {
+      color: $light-color;
+      font-size: 18px;
+      margin: 30px 0;
+      line-height: 1.8;
+    }
+    a {
+      width: 500px;
+      @include button(
+        $light-color,
+        $orange,
+        20px,
+        600,
+        20px 30px,
+        $main-raduis
+      );
+    }
+  }
+}
+/* ----- end: [1] home ----- */
+/* ----- start: [2] responsive ----- */
+@media (max-width: 768px) {
+  .home-page .container {
+    text-align: start;
+    h2 {
+      font-size: 30px;
+    }
+    p {
+      font-size: 16px;
+      margin: 15px 0;
+    }
+    a {
+      width: 70%;
+    }
+  }
+}
+@media (max-width: 550px) {
+  .home-page .container {
+    a {
+      font-size: 16px;
+    }
+  }
+}
+/* ----- end: [2] responsive ----- */

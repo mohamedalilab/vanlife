@@ -1,0 +1,23 @@
+@use "../../styles/helpers/variables" as *;
+@use "../../styles/helpers/mixins" as *;
+@use "../../styles/helpers/breakpoints" as *;
+
+.van-type {
+  @include button($white, $alt-bg-color, 16px, bold, 10px 20px, $main-raduis);
+  &.simple {
+    background-color: $orange;
+  }
+  &.luxury {
+    background-color: $black;
+  }
+  &.rugged {
+    background-color: $green;
+  }
+}
+
+@include respond-down("xsm") {
+  .type {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}

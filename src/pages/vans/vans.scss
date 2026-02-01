@@ -1,0 +1,119 @@
+@use "../../styles/helpers/variables" as *;
+@use "../../styles/helpers/mixins" as *;
+@use "../../styles/helpers/breakpoints" as *;
+
+/*
+  Vans Page Styles:
+  [1] vans-page
+  [2] vans-filter
+  [3] vans-card
+  [4] responsive
+*/
+/* ----- start: [1] vans-page ----- */
+.vans-page .container {
+  h1 {
+    margin-bottom: 10px;
+  }
+  .vans-list {
+    @include grid-auto-columns(250px, 40px);
+  }
+}
+/* ----- end: [1] vans-page ----- */
+/* ----- start: [2] type-filter ----- */
+.type-filter {
+  @include flex(row, null, center, 15px);
+  margin-bottom: 20px;
+  button {
+    @include button(
+      $alt-dark-color,
+      $alt-bg-color,
+      18px,
+      bold,
+      15px 20px,
+      $main-raduis
+    );
+    text-transform: capitalize;
+    &:hover,
+    &.active {
+      color: $basic;
+    }
+    &.simple:hover,
+    &.simple.active {
+      background-color: $orange;
+    }
+    &.luxury:hover,
+    &.luxury.active {
+      background-color: $black;
+    }
+    &.rugged:hover,
+    &.rugged.active {
+      background-color: $green;
+    }
+  }
+}
+/* ----- end: [2] type-filter ----- */
+/* ----- start: [3] van-card ----- */
+.van-card {
+  background-color: $alt-bg-color;
+  text-transform: capitalize;
+  padding: 10px;
+  border-radius: $main-raduis;
+  img {
+    width: 100%;
+    border-radius: $main-raduis;
+  }
+  .details {
+    margin-top: 15px;
+    & > div {
+      @include flex(row, space-between, center);
+      margin-bottom: 10px;
+    }
+    .top {
+      color: $dark-color;
+      position: relative;
+      h2 {
+        font-size: 20px;
+      }
+    }
+    .bottom .price {
+      color: $dark-color;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}
+/* ----- end: [3] van-card ----- */
+/* ----- start: [4] responsive ----- */
+@include respond-down("xsm") {
+  .vans-page .container {
+    & > h1 {
+      font-size: 22px;
+    }
+    .type-filter button {
+      font-size: 14px;
+      padding: 10px;
+    }
+    .vans-list {
+      display: block;
+      .van-card {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 15px;
+        a img {
+          width: 100px;
+        }
+        .details {
+          @include flex(column, space-between);
+          flex: 1;
+          .top .name {
+            font-size: 16px;
+          }
+          .bottom .price {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+/* ----- end: [4] responsive----- */

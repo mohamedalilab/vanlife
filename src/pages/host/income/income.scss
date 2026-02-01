@@ -1,0 +1,313 @@
+@use "../../../styles/helpers/variables" as *;
+@use "../../../styles/helpers/mixins" as *;
+@use "../../../styles/helpers/breakpoints" as *;
+
+/*
+  Host Income Styles:
+  [1] income-header
+  [2] total-income
+  [3] income-chart
+  [4] transactions-section
+  [5] responsive
+*/
+
+/* ----- start: [1] income-header ----- */
+.host-income {
+  .income-header {
+    @include flex(row, space-between, center, 20px);
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 32px;
+      font-weight: 900;
+      color: $dark-color;
+    }
+
+    .time-filter {
+      font-size: 16px;
+      color: $alt-dark-color;
+
+      .filter-link {
+        text-decoration: underline;
+        cursor: pointer;
+        color: $dark-color;
+
+        &:hover {
+          color: $orange;
+        }
+      }
+    }
+  }
+}
+/* ----- end: [1] income-header ----- */
+
+/* ----- start: [2] total-income ----- */
+.host-income .total-income {
+  margin-bottom: 40px;
+
+  .income-amount {
+    font-size: 48px;
+    font-weight: 900;
+    color: $dark-color;
+  }
+}
+/* ----- end: [2] total-income ----- */
+
+/* ----- start: [3] income-chart ----- */
+.host-income .income-chart {
+  background-color: $light-bg-color;
+  border-radius: $main-raduis;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .chart-container {
+    @include flex(row, flex-start, flex-start, 20px);
+    position: relative;
+  }
+
+  .chart-y-axis {
+    @include flex(column, flex-end, flex-end, 0);
+    min-width: 50px;
+    height: 300px;
+    font-size: 14px;
+    color: $alt-dark-color;
+    padding-right: 10px;
+
+    span {
+      height: 50px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .chart-bars-container {
+    flex: 1;
+    position: relative;
+    height: 300px;
+  }
+
+  .chart-grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @include flex(column, space-between, stretch, 0);
+
+    .grid-line {
+      height: 1px;
+      border-top: 1px dashed $border-ccc;
+    }
+  }
+
+  .chart-bars {
+    position: relative;
+    height: 100%;
+    @include flex(row, space-around, flex-end, 10px);
+    padding: 0 10px;
+    z-index: 1;
+  }
+
+  .bar-wrapper {
+    flex: 1;
+    height: 100%;
+    @include flex(column, flex-end, center, 0);
+    position: relative;
+  }
+
+  .bar {
+    width: 100%;
+    min-height: 5px;
+    background-color: $orange;
+    border-radius: $main-raduis $main-raduis 0 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &.bar-recent {
+      background-color: #e67a2e; // Darker orange for recent months
+    }
+  }
+
+  .chart-x-axis {
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    width: 100%;
+    @include flex(row, space-around, center, 10px);
+    padding: 0 10px;
+    font-size: 14px;
+    color: $alt-dark-color;
+  }
+}
+/* ----- end: [3] income-chart ----- */
+
+/* ----- start: [4] transactions-section ----- */
+.host-income .transactions-section {
+  .transactions-header {
+    @include flex(row, space-between, center, 20px);
+    margin-bottom: 20px;
+
+    h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: $dark-color;
+    }
+
+    .time-filter {
+      font-size: 16px;
+      color: $alt-dark-color;
+
+      .filter-link {
+        text-decoration: underline;
+        cursor: pointer;
+        color: $dark-color;
+
+        &:hover {
+          color: $orange;
+        }
+      }
+    }
+  }
+
+  .transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .no-transactions {
+      color: $alt-dark-color;
+      font-size: 16px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .transaction-item {
+      background-color: $light-bg-color;
+      border-radius: $main-raduis;
+      padding: 20px 25px;
+      @include flex(row, space-between, center, 20px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      .transaction-amount {
+        font-size: 20px;
+        font-weight: 700;
+        color: $dark-color;
+      }
+
+      .transaction-date {
+        font-size: 16px;
+        color: $alt-dark-color;
+      }
+    }
+  }
+}
+/* ----- end: [4] transactions-section ----- */
+
+/* ----- start: [5] responsive ----- */
+@include respond-down("md") {
+  .host-income {
+    .income-chart {
+      padding: 20px;
+
+      .chart-container {
+        flex-direction: column;
+      }
+
+      .chart-y-axis {
+        height: auto;
+        @include flex(row, space-between, center, 0);
+        width: 100%;
+        padding-right: 0;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+
+        span {
+          height: auto;
+        }
+      }
+
+      .chart-bars-container {
+        width: 100%;
+      }
+
+      .chart-x-axis {
+        position: relative;
+        bottom: auto;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+@include respond-down("xsm") {
+  .host-income {
+    .income-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .time-filter {
+        font-size: 14px;
+      }
+    }
+
+    .total-income .income-amount {
+      font-size: 36px;
+    }
+
+    .income-chart {
+      padding: 15px;
+
+      .chart-y-axis {
+        font-size: 12px;
+      }
+
+      .chart-bars {
+        gap: 5px;
+      }
+
+      .chart-x-axis {
+        font-size: 12px;
+      }
+    }
+
+    .transactions-section {
+      .transactions-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        h3 {
+          font-size: 20px;
+        }
+
+        .time-filter {
+          font-size: 14px;
+        }
+      }
+
+      .transactions-list .transaction-item {
+        padding: 15px 20px;
+
+        .transaction-amount {
+          font-size: 18px;
+        }
+
+        .transaction-date {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+/* ----- end: [5] responsive ----- */
+

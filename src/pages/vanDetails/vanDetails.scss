@@ -1,0 +1,117 @@
+@use "../../styles/helpers/variables" as *;
+@use "../../styles/helpers/mixins" as *;
+@use "../../styles/helpers/breakpoints" as *;
+
+/*
+  Van Details Styles:
+  [1] content
+  [2] img-container
+  [3] van-info
+  [4] responsive
+*/
+/* ----- start: [1] content ----- */
+.van-details-page .container .content {
+  @include flex(row, space-between, center, 20px);
+  margin: 10px 0;
+}
+/* ----- end: [1] content ----- */
+/* ----- start: [2] img-container ----- */
+.van-details-page .container .content .img-container {
+  min-width: 400px;
+  border-radius: $main-raduis;
+  position: relative;
+  overflow: hidden;
+  img,
+  .img-options {
+    width: 100%;
+    height: 100%;
+  }
+  .img-options {
+    @include flex(flex, center, center, 30px);
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: scale(0);
+    position: absolute;
+    top: 0;
+    button,
+    a {
+      height: 50px;
+      @include flex(flex, center, center);
+      background-color: transparent;
+      position: relative;
+      svg {
+        width: 50px;
+        font-size: 30px;
+        color: $light-color;
+        z-index: 1;
+      }
+      &::after {
+        @include ele-circle(50px, null);
+        transform: scale(0);
+        transition: 0.3s;
+        left: 0;
+        z-index: -1;
+      }
+      &:hover::after {
+        background-color: $dark-color;
+        transform: scale(1);
+      }
+    }
+  }
+  &:hover .img-options {
+    transform: scale(1);
+  }
+}
+/* ----- end: [2] img-container ----- */
+/* ----- start: [3] van-info ----- */
+.van-details-page .container .content .van-info {
+  h2 {
+    margin-bottom: 10px;
+  }
+  .van-type {
+    display: block;
+    width: fit-content;
+    margin-bottom: 15px;
+  }
+  .label {
+    width: 100%;
+    @include flex(row, space-between, center, 50px);
+    margin-bottom: 15px;
+    .rent-btn {
+      width: 100%;
+      @include button($white, $orange, 18px, bold, 10px 20px, $main-raduis);
+      text-transform: capitalize;
+    }
+    .price {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+  .description {
+    font-size: 18px;
+    line-height: 1.5;
+    padding: 5px 0px;
+  }
+}
+/* ----- end: [3] van-info ----- */
+/* ----- start: [4] responsive -- ----- */
+@include respond-down("md") {
+  .van-details-page .container .content {
+    flex-direction: column;
+    .img-container {
+      max-width: 300px;
+    }
+  }
+}
+@include respond-down("xsm") {
+  .van-details-page {
+    .container .content {
+      .img-container {
+        min-width: 200px;
+      }
+      .van-info .description {
+        font-size: 14px;
+      }
+    }
+  }
+}
+/* ----- end: [4] responsive ----- */

@@ -1,0 +1,42 @@
+@use "../styles/helpers/variables" as *;
+@use "../styles/helpers/mixins" as *;
+@use "../styles/helpers/breakpoints" as *;
+
+.back-btn {
+  @include button(
+    $light-color,
+    $black,
+    18px,
+    bold,
+    10px 20px 10px 35px,
+    $main-raduis,
+    $alt-dark-color
+  );
+  text-transform: capitalize;
+  position: relative;
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    transition: 0.2s;
+  }
+  &:hover svg {
+    left: 5px;
+  }
+}
+@include respond-down("xsm") {
+  .back-btn {
+    font-size: 14px;
+    padding: 10px 10px 10px 25px;
+  }
+}
+.empty-list{
+  margin: 20px 0;
+  h3{
+    color: $alt-dark-color;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+  }
+}

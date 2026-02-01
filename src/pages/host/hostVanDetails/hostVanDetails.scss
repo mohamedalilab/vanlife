@@ -1,0 +1,234 @@
+@use "../../../styles/helpers/variables" as *;
+@use "../../../styles/helpers/mixins" as *;
+@use "../../../styles/helpers/breakpoints" as *;
+
+/*
+  Host Van Details Styles:
+  [1] back-link
+  [2] van-details-card
+  [3] van-image
+  [4] van-details-content
+  [5] tabs
+  [6] tab-content
+  [7] responsive
+*/
+
+/* ----- start: [1] back-link ----- */
+.host-van-details {
+  .back-link {
+    @include flex(row, flex-start, center, 8px);
+    color: $alt-dark-color;
+    text-decoration: none;
+    margin-bottom: 20px;
+    font-size: 16px;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $dark-color;
+      text-decoration: underline;
+    }
+
+    svg {
+      font-size: 18px;
+    }
+  }
+}
+/* ----- end: [1] back-link ----- */
+
+/* ----- start: [2] van-details-card ----- */
+.host-van-details .van-details-card {
+  background-color: $light-bg-color;
+  border-radius: $main-raduis;
+  padding: 30px;
+  @include flex(row, flex-start, flex-start, 30px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+/* ----- end: [2] van-details-card ----- */
+
+/* ----- start: [3] van-image ----- */
+.host-van-details .van-details-card .van-image {
+  min-width: 200px;
+  width: 200px;
+  height: 200px;
+  border-radius: $main-raduis;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+/* ----- end: [3] van-image ----- */
+
+/* ----- start: [4] van-details-content ----- */
+.host-van-details .van-details-card .van-details-content {
+  flex: 1;
+  width: 100%;
+
+  .category-tag {
+    display: inline-block;
+    background-color: $orange;
+    color: $white;
+    padding: 6px 12px;
+    border-radius: $main-raduis;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+  }
+
+  .van-name {
+    font-size: 28px;
+    font-weight: 900;
+    color: $dark-color;
+    margin-bottom: 10px;
+  }
+
+  .van-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: $dark-color;
+    margin-bottom: 20px;
+  }
+}
+/* ----- end: [4] van-details-content ----- */
+
+/* ----- start: [5] tabs ----- */
+.host-van-details .van-details-card .van-details-content .tabs {
+  @include flex(row, flex-start, center, 0);
+  border-bottom: 2px solid $border-eee;
+  margin-bottom: 20px;
+
+  .tab {
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    color: $alt-dark-color;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: $dark-color;
+      transition: width 0.3s;
+    }
+
+    &:hover {
+      color: $dark-color;
+    }
+
+    &.active {
+      color: $dark-color;
+      font-weight: 700;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+/* ----- end: [5] tabs ----- */
+
+/* ----- start: [6] tab-content ----- */
+.host-van-details .van-details-card .van-details-content .tab-content {
+  .details-content,
+  .pricing-content {
+    .detail-row {
+      @include flex(row, space-between, flex-start, 20px);
+      padding: 15px 0;
+      border-bottom: 1px solid $border-eee;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      strong {
+        font-weight: 700;
+        color: $dark-color;
+        min-width: 120px;
+      }
+
+      span {
+        color: $alt-dark-color;
+        flex: 1;
+        text-align: right;
+      }
+    }
+  }
+
+  .photos-content {
+    img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: $main-raduis;
+    }
+  }
+}
+/* ----- end: [6] tab-content ----- */
+
+/* ----- start: [7] responsive ----- */
+@include respond-down("md") {
+  .host-van-details .van-details-card {
+    flex-direction: column;
+
+    .van-image {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      aspect-ratio: 1;
+    }
+  }
+}
+
+@include respond-down("xsm") {
+  .host-van-details {
+    .back-link {
+      font-size: 14px;
+    }
+
+    .van-details-card {
+      padding: 20px;
+
+      .van-details-content {
+        .van-name {
+          font-size: 22px;
+        }
+
+        .van-price {
+          font-size: 18px;
+        }
+
+        .tabs .tab {
+          font-size: 14px;
+          padding: 10px 15px;
+        }
+
+        .tab-content {
+          .detail-row {
+            flex-direction: column;
+            gap: 8px;
+
+            strong {
+              min-width: auto;
+            }
+
+            span {
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/* ----- end: [7] responsive ----- */
+

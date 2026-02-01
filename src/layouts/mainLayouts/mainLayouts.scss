@@ -1,0 +1,155 @@
+@use "../../styles/helpers/variables" as *;
+@use "../../styles/helpers/mixins" as *;
+@use "../../styles/helpers/breakpoints" as *;
+
+/*
+  Main Layouts Styles:
+  
+  [1] header
+  [2] footer
+  [3] responsive
+*/
+
+/* ----- start: [1] header ----- */
+header {
+  width: 100%;
+  background-color: $alt-bg-color;
+  text-transform: capitalize;
+  border-bottom: 1px solid $border-ccc;
+  padding: 20px 0;
+  .container {
+    @include flex(row, space-between, center);
+    .logo img {
+      width: 150px;
+    }
+    nav {
+      @include flex(row, space-between, center, 50px);
+      a {
+        color: $alt-dark-color;
+        font-size: 20px;
+        font-weight: 600;
+        padding: 8px 0px;
+        position: relative;
+        &::before {
+          @include ele(0, 3px, $dark-color);
+          bottom: 0;
+          left: 0;
+        }
+        &.active,
+        &:hover {
+          color: $dark-color;
+          &::before {
+            width: 100%;
+          }
+        }
+      }
+      // .user {
+      //   position: relative;
+      //   & > svg {
+      //     font-size: 30px;
+      //   }
+      //   .drop-menu {
+      //     background-color: $alt-bg-color;
+      //     border: 1px solid $border-ccc;
+      //     position: absolute;
+      //     top: -200px;
+      //     right: 20px;
+      //     transition: 0.5s;
+      //     &:before {
+      //       @include ele-arrow(bottom, 10px, $alt-bg-color);
+      //       top: -20px;
+      //       right: 5px;
+      //     }
+      //     &.down {
+      //       top: calc(100% + 35px);
+      //     }
+      //     li {
+      //       @include fill-bg($alt-bg-color, 0.3s);
+      //       a {
+      //         color: $dark-color;
+      //         display: flex;
+      //         align-items: center;
+      //         padding: 15px 20px;
+      //         position: relative;
+      //         &:first-of-type {
+      //           border-bottom: 1px solid $border-ddd;
+      //         }
+      //         span {
+      //           color: $dark-color;
+
+      //           white-space: nowrap;
+      //         }
+      //         svg {
+      //           width: 30px;
+      //           font-size: 22px;
+      //           margin-right: 40px;
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
+    }
+  }
+}
+/* ----- end: [1] header ----- */
+/* ----- start: [2] footer ----- */
+footer {
+  width: 100%;
+  color: $footer-font-color;
+  background-color: $footer-bg-color;
+  text-align: center;
+  padding: 30px 15px;
+}
+/* ----- end: [2] footer ----- */
+/* ----- start: [3] responsive ----- */
+@include respond-down("md") {
+  header .container nav a {
+    font-size: 18px;
+  }
+}
+@include respond-down("usm") {
+  header {
+    padding: 10px 0;
+    .container {
+      .logo img {
+        width: 100px;
+      }
+      nav {
+        gap: 20px;
+        & > a {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  footer {
+    font-size: 14px;
+    padding: 15px;
+  }
+}
+// @media (max-width: 500px) {
+//   header .container {
+//     nav {
+//       gap: 20px;
+//       & > a,
+//       .drop-menu span{
+//         font-size: 14px;
+//       }
+//       .user {
+//         & > svg {
+//           font-size: 22px;
+//         }
+//         .drop-menu {
+//           right: -6px;
+//           li a {
+//             padding: 10px 15px;
+//             svg {
+//               font-size: 18px;
+//               margin-right: 20px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

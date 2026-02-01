@@ -1,0 +1,30 @@
+@use "../helpers/variables" as *;
+@use "../helpers/mixins" as *;
+@use "../helpers/breakpoints" as *;
+
+body {
+  font-family: "inter", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label {
+  text-transform: capitalize;
+  line-height: 1.4;
+  color: $dark-color;
+}
+
+label,
+input,
+textarea {
+  color: $dark-color;
+}
+
+label {
+  font-weight: bold;
+}

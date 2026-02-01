@@ -1,0 +1,100 @@
+@use "../../../styles/helpers/variables" as *;
+@use "../../../styles/helpers/mixins" as *;
+@use "../../../styles/helpers/breakpoints" as *;
+/*
+  Host Layouts styles:
+  [1] dashboard
+  [2] income-row
+  [3] reviews-row
+  [4] responsive
+*/
+/* ----- start: [1] dashboard ----- */
+.dashboard {
+  background-color: #ffead0;
+  h1 {
+    font-size: 30px;
+  }
+  .row {
+    @include flex(row, space-between, center, 20px);
+    padding: 20px 40px;
+    margin: 15px auto 0;
+    a {
+      color: $dark-color;
+      font-weight: bold;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+/* ----- end: [1] dashboard ----- */
+/* ----- start: [2] income-row  ----- */
+.income-row {
+  h1 {
+    margin-bottom: 10px;
+  }
+  .label p {
+    color: $alt-dark-color;
+    font-weight: bold;
+    margin-bottom: 10px;
+    u {
+      color: $dark-color;
+    }
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: 900;
+  }
+}
+/* ----- end: [2] income-row ----- */
+/* ----- start: [3] reviews-row ----- */
+.reviews-row {
+  background-color: #fbdaaf;
+  .label h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  span {
+    width: fit-content;
+    @include flex(row, space-between, center, 5px);
+    color: $alt-dark-color;
+    font-size: 20px;
+    svg {
+      color: $orange;
+    }
+  }
+}
+/* ----- end: [3] reviews-row ----- */
+/* ----- start: [4] responsive ----- */
+@include respond-down("sm") {
+  .dashboard .row {
+    padding: 10px 15px;
+  }
+}
+@include respond-down("xsm") {
+  .dashboard {
+    .row a {
+      font-size: 14px;
+    }
+    .income-row .label {
+      h1 {
+        font-size: 20px;
+      }
+      p {
+        font-size: 14px;
+      }
+      h2 {
+        font-size: 18px;
+      }
+    }
+    .reviews-row .label {
+      h1 {
+        font-size: 18px;
+      }
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+}
+/* ----- end: [4] responsive ----- */

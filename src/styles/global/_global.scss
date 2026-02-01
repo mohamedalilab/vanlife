@@ -1,0 +1,38 @@
+@use "../helpers/breakpoints" as *;
+@use "../helpers/mixins";
+@use "../helpers/variables" as *;
+
+body {
+  min-height: 100vh;
+  background-color: $main-bg-color;
+}
+#root {
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+  padding: 30px 0;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  /* Small Devices */
+  @include respond-up("xsm"){
+    max-width: 540px;
+  }
+  /* Medium Devices */
+  @include respond-up("sm"){
+    max-width: 720px;
+  }
+  /* Desktops */
+  @include respond-up("md"){
+    max-width: 960px;
+  }
+  /* Large Screens */
+  @include respond-up("lg"){
+    max-width: 1140px;
+  }
+}

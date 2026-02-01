@@ -1,0 +1,54 @@
+@use "../../styles/helpers/variables" as *;
+@use "../../styles/helpers/mixins" as *;
+@use "../../styles/helpers/breakpoints" as *;
+/*
+  Not Found page styles:
+  [1] not-found-page
+  [2] responsive
+*/
+/* ----- start: [1] not-found-page ----- */
+.not-found-page {
+  @include flex(column, center, center, 20px);
+  .container {
+    text-align: center;
+    color: $dark-color;
+    span {
+      font-size: 50px;
+      font-weight: bold;
+    }
+    p {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin: 30px;
+    }
+    a {
+      display: block;
+      max-width: 300px;
+      margin: 0 auto;
+      @include button($white, $dark-color, 20px, 600, 15px 30px, $main-raduis);
+    }
+  }
+}
+/* ----- end: [1] not-found-page ----- */
+/* ----- start: [2] responsive ----- */
+@include respond-down("sm") {
+  .not-found-page .container {
+    .status-code {
+      font-size: 25px;
+    }
+    p {
+      font-size: 18px;
+      margin: 10px 0 30px;
+    }
+  }
+}
+@include respond-down("xsm") {
+  .not-found-page .container {
+    a {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+}
+/* ----- end: [2] responsive ----- */

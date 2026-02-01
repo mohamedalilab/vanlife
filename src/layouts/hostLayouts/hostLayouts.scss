@@ -1,0 +1,50 @@
+@use "../../styles/helpers/variables" as *;
+@use "../../styles/helpers/mixins" as *;
+@use "../../styles/helpers/breakpoints" as *;
+/*
+  Host Layouts styles:
+  [1] host-page
+  [2] host-nav
+  [3] responsive
+*/
+/* ----- start: [1] host-page ----- */
+/* ----- end: [1] host-page ----- */
+/* ----- start: [2] host-nav ----- */
+main .container {
+  .host-nav {
+    width: 70%;
+    max-width: 500px;
+    @include flex(row, space-between, center, 20px);
+    margin: 20px 0px;
+    a {
+      color: $alt-dark-color;
+      font-size: 18px;
+      text-transform: capitalize;
+      position: relative;
+      &::before {
+        @include ele(0, 2px, $dark-color);
+        bottom: 0;
+        left: 0;
+      }
+      &:hover,
+      &.active {
+        font-weight: bold;
+        color: $dark-color;
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+/* ----- end: [2] host-nav ----- */
+/* ----- start: [3] responsive ----- */
+@include respond-down("xsm") {
+  main .container .host-nav {
+    margin: 0 0 15px;
+    a {
+      font-size: 14px;
+    }
+  }
+}
+/* ----- end: [3] responsive ----- */

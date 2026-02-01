@@ -1,0 +1,90 @@
+@use "../../../styles/helpers/variables" as *;
+@use "../../../styles/helpers/mixins" as *;
+@use "../../../styles/helpers/breakpoints" as *;
+/*
+  Host Layouts styles:
+  [1] host-vans-page
+  [2] host-vans-list
+  [3] host-van-row
+  [4] responsive
+*/
+/* ----- start: [1] host-vans-page ----- */
+.host-vans {
+  h2 {
+    font-size: 25px;
+    font-weight: 900;
+    margin-bottom: 15px;
+  }
+}
+/* ----- end: [1] host-vans-page ----- */
+/* ----- start: [2] host-vans-list ----- */
+.host-vans .host-vans-list {
+  @include grid-auto-columns(370px, 15px);
+}
+/* ----- end: [2] host-vans-list ----- */
+/* ----- start: [3] host-vans-row ----- */
+.host-van-row {
+  background-color: $light-bg-color;
+  @include flex(row, space-between, center, 20px);
+  padding: 10px 15px;
+  .host-van-info {
+    @include flex(row, center, center, 20px);
+    img {
+      width: 90px;
+      border-radius: $main-raduis;
+    }
+    .label {
+      padding: 10px 0;
+      h3 {
+        margin-bottom: 5px;
+      }
+      span {
+        color: $alt-dark-color;
+        margin-top: 5px;
+      }
+    }
+  }
+  .edit-btn {
+    @include button(
+      $dark-color,
+      transparent,
+      18px,
+      bold,
+      5px 10px,
+      $main-raduis,
+      $orange
+    );
+    @include flex(row, space-between, center, 5px);
+    text-transform: capitalize;
+    position: relative;
+    transition: 0s;
+    svg {
+      font-size: 24px;
+    }
+    &:hover {
+      color: $light-color;
+    }
+  }
+}
+/* ----- end: [3] host-vans-row ----- */
+/* ----- start: [4] responsive ----- */
+@include respond-down("xsm") {
+  .host-vans .host-vans-list .host-van-row {
+    padding: 5px;
+    .host-van-info {
+      img {
+        width: 60px;
+      }
+      .label {
+        font-size: 14px;
+      }
+    }
+    .edit-btn {
+      font-size: 14px;
+      svg {
+        font-size: 20px;
+      }
+    }
+  }
+}
+/* ----- end: [4] responsive ----- */
