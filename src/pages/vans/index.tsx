@@ -11,7 +11,7 @@ import ErrorMsg from "../../components/errorMsg";
 
 function VansPage(): JSX.Element {
   const VANS_URL = "api/vans";
-  const { data, loading, error } = useFetch<Van[]>(VANS_URL);
+  const { data, loading, error } = useFetch<{ vans: Van[] }>(VANS_URL);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -27,8 +27,9 @@ function VansPage(): JSX.Element {
   const typeFilter = searchParams.get("type") as VanType;
 
   // filter vans for dsiplaying
-  const displayVans: Van[] =
-    data?.filter((van) => (typeFilter ? van.type === typeFilter : true)) ?? [];
+  const displayVans: Van[] = data
+    ? data?.vans.filter((van) => (typeFilter ? van.type === typeFilter : true))
+    : [];
 
   return (
     <main className="vans-page">
@@ -40,7 +41,7 @@ function VansPage(): JSX.Element {
             <Loading />
           ) : error ? (
             <ErrorMsg error={error} />
-          ) : !data  || data?.length <= 0 ? (
+          ) : !data || data?.length <= 0 ? (
             "theres no vans yet!"
           ) : displayVans.length === 0 ? (
             <EmptyList msg={"there is no vans yet!"} />

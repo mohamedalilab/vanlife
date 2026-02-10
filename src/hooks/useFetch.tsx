@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 type FetchState<T> = {
   data: T | null;
@@ -57,7 +57,6 @@ export function useFetch<T>(url: string, options?: FetchOptions) {
 
     return () => controller.abort();
   }, [url, options?.method, options?.headers, options?.body]);
-  React.useDebugValue(state.data);
   console.log(state.data);
 
   return state;

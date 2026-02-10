@@ -12,7 +12,7 @@ import HostVans from "./pages/host/hostVans.tsx";
 import HostVanDetails from "./pages/host/hostVanDetails";
 import NotFoundPage from "./pages/notFound";
 import "./styles/main.scss";
-import "./server";
+import "./server.js";
 
 function App() {
   return (
