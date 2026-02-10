@@ -41,7 +41,7 @@ function VansPage(): JSX.Element {
             <Loading />
           ) : error ? (
             <ErrorMsg error={error} />
-          ) : !data || data?.length <= 0 ? (
+          ) : !data || data?.vans.length <= 0 ? (
             "theres no vans yet!"
           ) : displayVans.length === 0 ? (
             <EmptyList msg={"there is no vans yet!"} />
