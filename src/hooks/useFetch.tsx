@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useDebugValue } from "react";
+import React, { useState, useEffect } from "react";
 
 type FetchState<T> = {
   data: T | null;
@@ -18,8 +18,6 @@ export function useFetch<T>(url: string, options?: FetchOptions) {
     loading: false,
     error: null,
   });
-
-  React.useDebugValue(state.data);
   useEffect(() => {
     if (!url) {
       setState({ data: null, loading: false, error: null });
@@ -60,7 +58,7 @@ export function useFetch<T>(url: string, options?: FetchOptions) {
     return () => controller.abort();
   }, [url, options?.method, options?.headers, options?.body]);
   React.useDebugValue(state.data);
-  console.log(state.data)
+  console.log(state.data);
 
   return state;
 }
